@@ -1,0 +1,26 @@
+<annotation>
+	<folder>Data</folder>
+	<filename>2021-02-23_00-37-39.584.jpeg</filename>
+	<path>C:\Users\User\Desktop\Data\2021-02-23_00-37-39.584.jpeg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1366</width>
+		<height>768</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>bird</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1062</xmin>
+			<ymin>547</ymin>
+			<xmax>1190</xmax>
+			<ymax>654</ymax>
+		</bndbox>
+	</object>
+</annotation>
