@@ -62,10 +62,12 @@ Creating validation set - tf-record file:
 python generate_tfrecord.py -x [PATH_TO_VALIDATION-SET_FOLDER]/validation_set -l [PATH_TO_label_map_FOLDER]/label_map.pbtxt -o [PATH_TO_TF]/validation_set.record
 ```
 where
-  PATH_TO_TRAIN-SET_FOLDER is where the training set data is located.
-  PATH_TO_label_map_FOLDER is the location to the label map *.pbtxt script
-  PATH_TO_TF is the path where you want to store the generated *.record files.
-  PATH_TO_VALIDATION-SET_FOLDER is directory path to the validation data set. 
+ |PATH                          | MEANING                                                  |
+ |----------------------------  |----------------------------------------------------------|
+ | PATH_TO_TRAIN-SET_FOLDER     |is where the training set data is located.                |
+ | PATH_TO_label_map_FOLDER is  | the location to the label map *.pbtxt script             |
+ |PATH_TO_TF                    | path where you want to store the generated *.record files|
+ | PATH_TO_VALIDATION-SET_FOLDER| is directory path to the validation data set.            |
 
 This generates train_set.record and validation_set.record files.
 
