@@ -1,2 +1,6 @@
-# bird_detection
+# The Implementation of models for a thesis titled "Investigating automated bird counting from webcams using machine learning"
 This repository hosts all the scripts used in the implementation of bird detection models. We are using Convolutional Neural Networks(CNN)'s Faster R-CNN, Single Shot Detector(SSD), and YOLOv3 meta-architectures while utilizing ResNet-101, MobileNet, Inception ResNet v2 and VGG-16 feature extraction Networks (backbone network).
+
+We using MS COCO pre-trained models https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md and the Tensorflow Object detection API fine-tuned on our dataset. The data used in this study is collected from the live FeedWatcher cams of Cornell Lab Bird Cams suited in different parts of the United States. We used auto-screen software which captured approximately 1 Megapixel (Joint Photographic Experts Group)JPEG coloured images of resolution 1366x768 pixels from the feeds. At one of the stations in Treman bird feeding in Ithaca, New York, Axis P11448-LE camera is being used for recordings. A total of 10,592 images of different quality were collected and labelled manually using the LabelImg image annotation tool https://github.com/tzutalin/labelImg.
+
+The repository provides all the files used to train and evaluate the models. But we have only attached a sample of our data since we couldn't upload the entire dataset of 10GB due to limited space allowed in the git free repository.
