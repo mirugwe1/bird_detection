@@ -52,7 +52,7 @@ Then, after we installed the following packages.
 ```
 
 At this stage we had something similar to:
-![](photos/images.jpg)
+![](https://github.com/mirugwe1/bird_detection/blob/master/photos/images.JPG)
 
 ## Data Pre-processing
 
