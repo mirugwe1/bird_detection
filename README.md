@@ -17,7 +17,9 @@ We ran the experiments on an MSI GL75 Leopard 10SFR laptop with;
 The [CUDA](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#title-new-features) and [cuDNN](https://developer.nvidia.com/cudnn) were downlaoded and installed following instructions from the official [NVIDIA Website](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exe_local).
 
 
-#Procedure
+# Procedure
+
+## Preparing the environment
 
 1. Setting up a virtual environment
 
@@ -54,13 +56,46 @@ Then, after we installed the following packages.
 At this stage we had something similar to:
 ![](https://github.com/mirugwe1/bird_detection/blob/master/photos/images.JPG)
 
-## Data Pre-processing
+3. Installing Protobuf and Object Detection API
 
-### Dataset Partitioning
+Protobufs are used  by the Tensorflow Object Detection API to configure the model and training the parameters.
 
-Using Script: data_partitioning.py
+This was achieved using the following command.
 
-This script is used to split the dataset into training, validation and testing sets.
+```
+(thesis_models) C:\thesis\mobilenet\models\research> protoc --python_out=. .\object_detection\protos\anchor_generator.proto .\object_detection\protos\argmax_matcher.proto .\object_detection\protos\bipartite_matcher.proto .\object_detection\protos\box_coder.proto .\object_detection\protos\box_predictor.proto .\object_detection\protos\eval.proto .\object_detection\protos\faster_rcnn.proto .\object_detection\protos\faster_rcnn_box_coder.proto .\object_detection\protos\grid_anchor_generator.proto .\object_detection\protos\hyperparams.proto .\object_detection\protos\image_resizer.proto .\object_detection\protos\input_reader.proto .\object_detection\protos\losses.proto .\object_detection\protos\matcher.proto .\object_detection\protos\mean_stddev_box_coder.proto .\object_detection\protos\model.proto .\object_detection\protos\optimizer.proto .\object_detection\protos\pipeline.proto .\object_detection\protos\post_processing.proto .\object_detection\protos\preprocessor.proto .\object_detection\protos\region_similarity_calculator.proto .\object_detection\protos\square_box_coder.proto .\object_detection\protos\ssd.proto .\object_detection\protos\ssd_anchor_generator.proto .\object_detection\protos\string_int_label_map.proto .\object_detection\protos\train.proto .\object_detection\protos\keypoint_box_coder.proto .\object_detection\protos\multiscale_anchor_generator.proto .\object_detection\protos\graph_rewriter.proto .\object_detection\protos\calibration.proto .\object_detection\protos\flexible_grid_anchor_generator.proto
+
+```
+By running the command above, name_pb2.py file of every .proto file is created in the protos folder as seen in the image below.
+![](https://github.com/mirugwe1/bird_detection/blob/master/photos/protos.JPG)
+
+The Object Detection API is installed using object_detection package which was achived using the two commands below.
+
+```
+(thesis_models) C:\thesis\mobilenet\models\research> python setup.py build
+(thesis_models) C:\thesis\mobilenet\models\research> python setup.py install
+```
+
+4. Verifying our Installation
+
+To verify our installation, used the following command.
+
+```
+(thesis_models) C:\thesis\mobilenet\models\research> python object_detection/builders/model_builder_tf2_test.py
+```
+
+The following output was obtained, and therefore our installation was confirmed successful.
+![](https://github.com/mirugwe1/bird_detection/blob/master/photos/image1.JPG)
+
+After successfully installing the object detection API, we started on training our models.
+
+## Training
+
+5. Data Pre-processing
+
+5.1 Dataset Partitioning
+
+Using data_partitioning.py script in the pre-processing folder, we split the dataset into training, validation and testing sets.
 
 We first split the dataset into training and testing sets in a ratio of 80:20. Before splitting is done, copy all training images, together with their corresponding
 *.xml annotation files a single folder. 
@@ -80,7 +115,7 @@ Still training and testing sets are created in the same directory.
 For more info: https://github.com/sglvladi/TensorFlowObjectDetectionTutorial
 
 
-### Convert *.xml to *.csv
+5.2  Convert *.xml to *.csv
 
 Script: xml_to_csv.py
  
@@ -93,7 +128,20 @@ Then run
 ```
 python xml_to_csv.py install
 ```
-## Convert *.xml to *.record
+
+5.3 Creating Label Map
+
+A label map is required by the tensorflow in both training and detection processes. And since our our dataset has only on class "bird", we created the label map below.
+
+```
+item {
+  id: 1
+  name: !'bird'`#f03c15`
+}
+
+```
+
+5.4 Convert *.xml to *.record
 
 Script: generate_tfrecord.py
 
@@ -119,5 +167,7 @@ where
 
 This generates train_set.record and validation_set.record files.
 
+After sections 5.1 to 5.3, we copied the training set, validation set to the images folder found in C:\thesis\sdd_mobilenet\models\research\object_detection\images and the TFrecods files were copied to the object_detection folder C:\thesis\sdd_mobilenet\models\research\object_detection. Finally, we had;
+ ![](https://github.com/mirugwe1/bird_detection/blob/master/photos/training.JPG)
 
-For more info: This site was built using [TensorFlow-Object-Detection-API-Tutorial](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10)
+Credit: This site was so helpful in process of installing and preparing the virtual environment: [TensorFlow-Object-Detection-API-Tutorial](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10)
