@@ -52,7 +52,7 @@ Then, after we installed the following packages.
 ```
 
 At this stage we had something similar to:
-![alt text](https://github.com/mirugwe1/bird_detection/tree/master/photos/images.jpg)
+![](photos/images.jpg)
 
 ## Data Pre-processing
 
