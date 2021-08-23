@@ -54,6 +54,7 @@ Then, after we installed the following packages.
 ```
 
 At this stage we had something similar to:
+
 ![](https://github.com/mirugwe1/bird_detection/blob/master/photos/images.JPG)
 
 3. Installing Protobuf and Object Detection API
@@ -67,6 +68,7 @@ This was achieved using the following command.
 
 ```
 By running the command above, name_pb2.py file of every .proto file is created in the protos folder as seen in the image below.
+
 ![](https://github.com/mirugwe1/bird_detection/blob/master/photos/protos.JPG)
 
 The Object Detection API is installed using object_detection package which was achived using the two commands below.
@@ -85,6 +87,7 @@ To verify our installation, used the following command.
 ```
 
 The following output was obtained, and therefore our installation was confirmed successful.
+
 ![](https://github.com/mirugwe1/bird_detection/blob/master/photos/image1.JPG)
 
 After successfully installing the object detection API, we started on training our models.
@@ -129,19 +132,8 @@ Then run
 python xml_to_csv.py install
 ```
 
-5.3 Creating Label Map
 
-A label map is required by the tensorflow in both training and detection processes. And since our our dataset has only on class "bird", we created the label map below.
-
-```
-item {
-  id: 1
-  name: !'bird'`#f03c15`
-}
-
-```
-
-5.4 Convert *.xml to *.record
+5.3 Convert *.xml to *.record
 
 Script: generate_tfrecord.py
 
@@ -168,6 +160,43 @@ where
 This generates train_set.record and validation_set.record files.
 
 After sections 5.1 to 5.3, we copied the training set, validation set to the images folder found in C:\thesis\sdd_mobilenet\models\research\object_detection\images and the TFrecods files were copied to the object_detection folder C:\thesis\sdd_mobilenet\models\research\object_detection. Finally, we had;
+
  ![](https://github.com/mirugwe1/bird_detection/blob/master/photos/training.JPG)
+
+5.4 Creating Label Map
+
+A label map is required by the tensorflow in both training and detection processes. And since our our dataset has only on class "bird", we created the label map below.
+
+```
+item {
+  id: 1
+  name: !'bird'`#f03c15`
+}
+
+```
+
+6. Downloading the pre-trained model.
+We download the SSD MobileNet-v2 model from the [TensorFlow 2 Object Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md) repository into the object detection folder and our directory looked like.
+
+```
+model/
+|-- ...
+|-- research/
+|   |-- ....
+|   |-- object_detection/
+|   |   |-- ...
+|   |   |-- ssd_mobilenet_v1_fpn_640x640_coco17_tpu-8/
+|   |   |   |-- checkpoint/
+|   |   |   |-- saved_model/
+|   |   |   |-- pipeline.config
+|   |   |
+|   |   `-- .....
+|   `-- ...
+`-- ...
+```
+
+To begin with, we need to download the latest pre-trained network for the model we wish to use. This can be done by
+simply clicking on the name of the desired model in the table found in TensorFlow 2 Detection Model Zoo. Clicking
+on the name of your model should initiate a download for a *.tar.gz file.
 
 Credit: This site was so helpful in process of installing and preparing the virtual environment: [TensorFlow-Object-Detection-API-Tutorial](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10)
