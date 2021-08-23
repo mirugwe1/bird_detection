@@ -5,11 +5,60 @@ We using MS COCO pre-trained models https://github.com/tensorflow/models/blob/ma
 
 The repository provides all the files used to train and evaluate the models. But we have only attached a sample of our data since we couldn't upload the entire dataset of 10GB due to limited space allowed in the git free repository. A full dataset has been pubshiled on Zenodo for public access: https://zenodo.org/record/5172214#.YSO8YI4zZhH
 
-# Data Pre-processing Scipts.
+# System Requirement 
+We ran the experiments on an MSI GL75 Leopard 10SFR laptop with; 
+1. CUDA 11.0, 
+2. cuDNN SDK 8.0.4
+3. Windows 10 x64
+4. 10th Gen Intel Core i7-10750H,  
+5. GeForce RTX 2070 8GB GDDR6 graphics processing unit (GPU)
+6. 32GB DDR4 RAM.
 
-## Dataset Partitioning
+The [CUDA](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#title-new-features) and [cuDNN](https://developer.nvidia.com/cudnn) were downlaoded and installed following instructions from the official [NVIDIA Website](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exe_local).
 
-Script: data_partitioning.py
+
+#Procedure
+
+1. Setting up a virtual environment
+
+Opened Anaconda Prompt as an adminitrator and we created a virtual environment called "thesis_models" using the following command;
+
+```
+C:\> conda create -n thesis_models pip python=3.8
+```
+
+After, activate the virtual environment using,
+
+```
+C:\> activate thesis_models
+```
+
+Then, after we installed the following packages.
+
+```
+(thesis_models) C:\> pip install tensorflow==2.5.0 tensorflow-gpu==2.5.0
+(thesis_models) C:\> conda install -c anaconda protobuf
+(thesis_models) C:\> pip install pillow
+(thesis_models) C:\> pip install lxml
+(thesis_models) C:\> pip install Cython
+(thesis_models) C:\> pip install contextlib2
+(thesis_models) C:\> pip install jupyter
+(thesis_models) C:\> pip install matplotlib
+```
+2. Cloning a TensorFlow object detection API repository in folder "thesis" using,
+
+```
+(thesis_models) C:\thesis> git clone https://github.com/tensorflow/models.git
+```
+
+At this stage we had something similar to:
+![alt text](https://github.com/mirugwe1/bird_detection/tree/master/photos/images.jpg)
+
+## Data Pre-processing
+
+### Dataset Partitioning
+
+Using Script: data_partitioning.py
 
 This script is used to split the dataset into training, validation and testing sets.
 
@@ -31,7 +80,7 @@ Still training and testing sets are created in the same directory.
 For more info: https://github.com/sglvladi/TensorFlowObjectDetectionTutorial
 
 
-## Convert *.xml to *.csv
+### Convert *.xml to *.csv
 
 Script: xml_to_csv.py
  
