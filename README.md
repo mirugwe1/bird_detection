@@ -1,8 +1,3 @@
-<style>H1{color:Red;}</style>
-<style>H2{color:Blue;}</style>
-<style>H3{color:DarkOrange;}</style>
-<style>p{color:Black;}</style>
-
 # The Implementation of models for a thesis titled "Investigating automated bird counting from webcams using machine learning"
 
 ### Table of Contents
