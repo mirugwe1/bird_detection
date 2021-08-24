@@ -1,4 +1,4 @@
-# The Implementation of models for a thesis titled "Investigating automated bird counting from webcams using machine learning"
+# The Implementation of models for a thesis titled "Investigating automated bird detection from webcams using machine learning"
 
 # Introduction
 
