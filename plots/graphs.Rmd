@@ -1,0 +1,103 @@
+---
+title: "Thesis"
+author: "alex"
+date: "6/27/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r cars}
+#plot for the SSD models
+map <- c(40.1,67.5,43.6,73.3,50.8,80.1,53.1,89.4) # the mean average precision values
+type <- c("Non Fine-Tuned","Fine-Tuned","Non Fine-Tuned","Fine-Tuned","Non Fine-Tuned","Fine-Tuned","Non Fine-Tuned","Fine-Tuned") # tuned and non-tuned models
+
+#feature extractors
+backbone <- c("MobileNet","MobileNet","ResNet50","ResNet50","ResNet101","ResNet101","ResNet152","ResNet152")
+
+#generating the dataframe
+df <- cbind(map,type,backbone)
+df <- as.data.frame(df)
+df$type <- as.factor(df$type)
+df$map <- as.numeric(df$map)
+df$backbone <- as.factor(df$backbone)
+str(df)
+
+library(ggplot2) #calling ggplot2 package
+
+# plotting the graph
+pdf("SDD_mAP.pdf")
+ggplot(data=df, aes(x=backbone, y=map, fill=type)) +
+  geom_bar(stat="identity", position=position_dodge())+
+  geom_text(aes(label=map), vjust=1.6, color="white",
+            position = position_dodge(0.9), size=3.5)+
+  labs(x = "Feature extractors",y="mean Average Precision(mAP)")+
+  guides(fill = guide_legend(title = NULL))+
+  theme_minimal()
+dev.off()
+```
+
+```{r }
+#plotting the sigmoid activation function
+z <- c(-6,-4,-2,0,2,4,6)
+y <- sigmoid(z)
+y <- 1/(1+exp(-z)) #sigmoid expression
+
+plot(z,y,type = "l", col='red', lwd=2)
+
+library(sigmoid)
+library(pracma)
+
+pdf("SIGMOID.pdf")
+x <- seq(-6, 6, length.out = 101) # x values
+y2 <- sigmoid(x, a = 2) # y-values
+plot(x, y2,type = "l", col = "blue", lwd=2,
+     xlab = "z", ylab=expression(delta(z))) #olotting the graph
+text(4, 0.8, expression(delta(z) == paste(frac(1, 1 + exp^-z))), cex = 1.2)
+abline(v = 0)
+abline(h = 0.5,lty=2)
+dev.off()
+
+# the Hyperbolic Tangent activation function
+pdf("TANH.pdf")
+x <- seq(-6, 6, length.out = 101)
+y2 <- sigmoid(x)
+z <- tanh(x)
+plot(x, z,type = "l", col = "blue", lwd=2,
+     xlab = "z", ylab=expression(phi(z)))
+lines(x,y2,col = "red", lwd=2)
+abline(v = 0)
+abline(h = 0,lty=2)
+legend("topleft",legend=c("Sigmoid","Tanh"), lwd = 3,col=c("red","blue"),cex = 1.5)
+dev.off()
+
+
+```
+
+
+```{r pressure, echo=FALSE}
+#plot comparing the Faster R-CNN and SSD detection performance
+Architecture <- c("SSD","SSD","SSD","SSD","Faster R-CNN","Faster R-CNN","Faster R-CNN","Faster R-CNN")
+extractor <- c("Mobilenet","ResNet50","ResNet101","ResNet152","ResNet50","ResNet101","ResNet152","Inception ResNet")
+mAP <- c(67.5,73.3,80.1,89.4,75.2,90.4,92.3,80.3) #the mean average precision
+time <- c(110,165,185,167,251,270,283,256) # the inference time
+evalu <- cbind(Architecture,extractor,mAP,time)
+evalu <- as.data.frame(evalu)
+
+evalu$architecture <- as.factor(evalu$Architecture)
+evalu$extractor <- as.factor(evalu$extractor)
+
+#ploting the graph
+pdf("EVALUATION.pdf")
+ggplot(evalu, aes(time,mAP,shape = Architecture))+
+  geom_point(aes(colour = Architecture), size = 3) +
+  labs(y= "mAP(%)",x="Time(ms)")+
+  geom_text(aes(label=extractor), position = position_nudge(y = -0.16))+
+  theme_minimal()
+dev.off()
+```
