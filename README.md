@@ -1,3 +1,8 @@
+<style>H1{color:Red;}</style>
+<style>H2{color:Blue;}</style>
+<style>H3{color:DarkOrange;}</style>
+<style>p{color:Black;}</style>
+
 # The Implementation of models for a thesis titled "Investigating automated bird counting from webcams using machine learning"
 
 ### Table of Contents
@@ -22,6 +27,7 @@
   - [Validation](https://github.com/mirugwe1/bird_detection#validation)
 * [Exporting Inference Graph](https://github.com/mirugwe1/bird_detection#exporting-inference-graph)
 * [Testing the Model](https://github.com/mirugwe1/bird_detection#testing-the-model)
+[References](https://github.com/mirugwe1/bird_detection#testing-the-model#references)
 
 
 # Introduction
@@ -33,6 +39,7 @@ We using MS COCO pre-trained models https://github.com/tensorflow/models/blob/ma
 The repository provides all the files used to train and evaluate the models. But we have only attached a sample of our data since we couldn't upload the entire dataset of 10GB due to limited space allowed in the git free repository. A full dataset has been published on Zenodo for public access: https://zenodo.org/record/5172214#.YSO8YI4zZhH
 
 # System Requirement 
+
 We ran the experiments on an MSI GL75 Leopard 10SFR laptop with; 
 1. CUDA 11.0, 
 2. cuDNN SDK 8.0.4
@@ -310,5 +317,9 @@ Below are some of the images with detected birds.
 
 Note: All the other seven models followed the same procedure.
 
+# References
 
-Credit: This site was so helpful in process of installing and preparing the virtual environment: [TensorFlow-Object-Detection-API-Tutorial](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10)
+1. [TensorFlow-Object-Detection-API-Tutorial](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10)
+2. [TFODCourse](https://github.com/nicknochnack/TFODCourse)
+3. [towardsdatascience](https://towardsdatascience.com/object-detection-with-tensorflow-model-and-opencv-d839f3e42849)
+
