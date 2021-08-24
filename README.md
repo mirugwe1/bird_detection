@@ -2,8 +2,8 @@
 
 ### Table of Contents
 
-[Introduction](https://github.com/mirugwe1/bird_detection#introduction)
-[System Requirement](https://github.com/mirugwe1/bird_detection#system-requirement)
+[Introduction](https://github.com/mirugwe1/bird_detection#introduction)\
+[System Requirement](https://github.com/mirugwe1/bird_detection#system-requirement)\
 [Procedure](https://github.com/mirugwe1/bird_detection#procedure)
 * [Preparing the environment](https://github.com/mirugwe1/bird_detection#preparing-the-environment)
   - [Setting up a virtual environment](https://github.com/mirugwe1/bird_detection#setting-up-a-virtual-environment)
@@ -21,7 +21,7 @@
   - [Training](https://github.com/mirugwe1/bird_detection#training)
   - [Validation](https://github.com/mirugwe1/bird_detection#validation)
 * [Exporting Inference Graph](https://github.com/mirugwe1/bird_detection#exporting-inference-graph)
-* [Testing the Model](https://github.com/mirugwe1/bird_detection#testing-the-model)
+* [Testing the Model](https://github.com/mirugwe1/bird_detection#testing-the-model)\
 [References](https://github.com/mirugwe1/bird_detection#testing-the-model#references)
 
 
