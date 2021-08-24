@@ -1,5 +1,20 @@
 # The Implementation of models for a thesis titled "Investigating automated bird counting from webcams using machine learning"
 
+### Table of Contents
+
+[Introduction](https://github.com/mirugwe1/bird_detection#introduction)
+
+[System Requirement](https://github.com/mirugwe1/bird_detection#system-requirement)
+
+[Procedure](https://github.com/mirugwe1/bird_detection#procedure)
+* [Preparing the environment](https://github.com/mirugwe1/bird_detection#preparing-the-environment)
+  - [Setting up a virtual environment](https://github.com/mirugwe1/bird_detection#setting-up-a-virtual-environment)
+  - [Cloning a TensorFlow object detection API](https://github.com/mirugwe1/bird_detection#cloning-a-tensorflow-object-detection-api-repository-in-folder-thesis-using)
+  - [Installing Protobuf and Object Detection API](https://github.com/mirugwe1/bird_detection#installing-protobuf-and-object-detection-api)
+  - [Verifying our Installation](https://github.com/mirugwe1/bird_detection#verifying-our-installation)
+* [Training](https://github.com/mirugwe1/bird_detection#setting-up-a-virtual-environment)
+
+
 # Introduction
 
 This repository hosts all the scripts used in the implementation of bird detection models. We are using Convolutional Neural Networks(CNN)'s Faster R-CNN and Single Shot Detector(SSD) meta-architectures while utilizing MobileNet-v2, ResNet50, ResNet101, ResNet152, and Inception ResNet-v2 feature extraction networks.
@@ -95,11 +110,9 @@ The following output was obtained, and therefore our installation was confirmed 
 
 After successfully installing the object detection API, we started training our models.
 
-## Training
+## Data Pre-processing
 
-### Data Pre-processing
-
-#### Dataset Partitioning
+### Dataset Partitioning
 
 Using the data_partitioning.py script in the pre-processing folder, we split the dataset into training, validation and testing sets.
 
@@ -121,7 +134,7 @@ Still, training and testing sets are created in the same directory.
 For more info: https://github.com/sglvladi/TensorFlowObjectDetectionTutorial
 
 
-####  Convert *.xml to *.csv
+###  Convert *.xml to *.csv
 
 Script: xml_to_csv.py
  
@@ -136,7 +149,7 @@ python xml_to_csv.py install
 ```
 
 
-#### Convert *.xml to *.record
+### Convert *.xml to *.record
 
 Script: generate_tfrecord.py
 
@@ -166,7 +179,7 @@ After sections 5.1 to 5.3, we copied the training set, validation set to the ima
 
  ![](https://github.com/mirugwe1/bird_detection/blob/master/photos/training.JPG)
 
-#### Creating Label Map
+### Creating Label Map
 
 A labelled map is required by TensorFlow in both training and detection processes. And since our dataset has only one class "bird", we created the label map below.
 
@@ -199,6 +212,8 @@ model/
 |-- ...
 ```
 
+## Model Training
+
 ### Configuring the Training Pipeline
 
 The pipeline.config file is copied from the ssd_mobilenet_v1_fpn_640x640_coco17_tpu-8 folder and pasted into the training with the label map. Our directory looked like.
@@ -221,7 +236,7 @@ model/
 
 The hyperparameters like the number of epochs, batch size, step size, image dimensions, learning rate, weight decay, and IoU score were fine-tuned through several training and validation sessions until the best model performing parameters were obtained. 
 
-### Model Training
+### Training
 
 We used the model_main_tf2.py script provided by the object detection API and found it in the object_detection to train our model. The best performing model took 4hours to complete. This operation was executed using the following command. 
 
@@ -238,7 +253,7 @@ We utilized the [MS COCO](https://cocodataset.org/#detection-eval) evaluation to
 
 ![](https://github.com/mirugwe1/bird_detection/blob/master/photos/validation.JPG)
 
-### Exporting Inference Graph
+## Exporting Inference Graph
 
 After training and validating our model, we exported the frozen inference graph into the folder "inference_graph" created in the object_detection folder using the exporter_main_v2.py script again provided by the object detection API. We performed this using the command below. 
 
@@ -269,7 +284,7 @@ model/
 |-- ...
 ```
 
-### Testing the Model
+## Testing the Model
 
 Using the bird_detection.py script in the post-processing folder in the repository, we test our model on images in the test set. This script was copied and pasted in the object_detection folder and the following command was used to execute the operation.
 
