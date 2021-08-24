@@ -3,16 +3,25 @@
 ### Table of Contents
 
 [Introduction](https://github.com/mirugwe1/bird_detection#introduction)
-
 [System Requirement](https://github.com/mirugwe1/bird_detection#system-requirement)
-
 [Procedure](https://github.com/mirugwe1/bird_detection#procedure)
 * [Preparing the environment](https://github.com/mirugwe1/bird_detection#preparing-the-environment)
   - [Setting up a virtual environment](https://github.com/mirugwe1/bird_detection#setting-up-a-virtual-environment)
   - [Cloning a TensorFlow object detection API](https://github.com/mirugwe1/bird_detection#cloning-a-tensorflow-object-detection-api-repository-in-folder-thesis-using)
   - [Installing Protobuf and Object Detection API](https://github.com/mirugwe1/bird_detection#installing-protobuf-and-object-detection-api)
   - [Verifying our Installation](https://github.com/mirugwe1/bird_detection#verifying-our-installation)
-* [Training](https://github.com/mirugwe1/bird_detection#setting-up-a-virtual-environment)
+* [Data Pre-processing](https://github.com/mirugwe1/bird_detection#verifying-our-installation)
+  - [Dataset Partitioning](https://github.com/mirugwe1/bird_detection#dataset-partitioning)
+  - [Convert *.xml to *.csv](https://github.com/mirugwe1/bird_detection#convert-xml-to-csv)
+  - [Convert *.xml to *.record](https://github.com/mirugwe1/bird_detection#convert-xml-to-record)
+  - [Creating Label Map](https://github.com/mirugwe1/bird_detection#creating-label-map)
+* [Model Training](https://github.com/mirugwe1/bird_detection#model-training)
+  - [Downloading the pre-trained model](https://github.com/mirugwe1/bird_detection#downloading-the-pre-trained-model)
+  - [Configuring the Training Pipeline](https://github.com/mirugwe1/bird_detection#configuring-the-training-pipeline)
+  - [Training](https://github.com/mirugwe1/bird_detection#training)
+  - [Validation](https://github.com/mirugwe1/bird_detection#validation)
+* [Exporting Inference Graph](https://github.com/mirugwe1/bird_detection#exporting-inference-graph)
+* [Testing the Model](https://github.com/mirugwe1/bird_detection#testing-the-model)
 
 
 # Introduction
@@ -191,6 +200,8 @@ item {
 
 ```
 
+## Model Training
+
 ### Downloading the pre-trained model
 
 We download the SSD MobileNet-v2 model from the [TensorFlow 2 Object Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md) repository into the object detection folder and our directory looked like.
@@ -211,8 +222,6 @@ model/
 |   |-- ...
 |-- ...
 ```
-
-## Model Training
 
 ### Configuring the Training Pipeline
 
@@ -243,7 +252,7 @@ We used the model_main_tf2.py script provided by the object detection API and fo
 ```
 (thesis_models) C:\thesis\mobilenet\models\research\object_detection> python model_main_tf2.py --model_dir=training --pipeline_config_path=training/pipeline.config --num_train_steps=<NUMBER_OF_STEPS>
 ```
-
+### Validation
 For validation, we used the following command.
 
 ```
